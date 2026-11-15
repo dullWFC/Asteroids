@@ -1,5 +1,6 @@
 import sys
 import pygame
+import asteroid
 from constants import *
 from circleshape import CircleShape
 from shot import Shot
@@ -12,6 +13,7 @@ class Player(CircleShape):
         self.rotation = 0
         self.shoot_timer = 0
         self.lives = lives
+        self.score = 0
 
     def triangle(self) -> list[pygame.Vector2]:
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
@@ -70,4 +72,5 @@ class Player(CircleShape):
             self.position.y = SCREEN_HEIGHT / 2
         else:
             print("Game over!")
+            print(f"Player score: {self.score}")
             sys.exit()
