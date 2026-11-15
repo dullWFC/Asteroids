@@ -1,3 +1,4 @@
+import sys
 import pygame
 from constants import *
 from circleshape import CircleShape
@@ -6,10 +7,11 @@ from shot import Shot
 
 
 class Player(CircleShape):
-    def __init__(self, x, y,):
+    def __init__(self, x, y, lives = 3):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
         self.shoot_timer = 0
+        self.lives = lives
 
     def triangle(self) -> list[pygame.Vector2]:
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
@@ -59,3 +61,13 @@ class Player(CircleShape):
             self.move(-dt)
         if keys[pygame.K_SPACE]:
             self.shoot()
+
+    def respawn(self):
+        if self.lives > 0:
+            self.lives -= 1
+            #set respawn point to middle of the screen
+            self.position.x = SCREEN_WIDTH / 2
+            self.position.y = SCREEN_HEIGHT / 2
+        else:
+            print("Game over!")
+            sys.exit()
