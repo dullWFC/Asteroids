@@ -39,6 +39,8 @@ def main():
         for asteroid in asteroids:
             if asteroid.collides_with(player):
                 log_event("player_hit")
+                asteroid.split()
+                player.add_score(asteroid)
                 player.respawn()
         for asteroid in asteroids:
             for shot in shots:

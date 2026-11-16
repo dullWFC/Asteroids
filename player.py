@@ -1,3 +1,4 @@
+import random
 import sys
 import pygame
 
@@ -68,8 +69,8 @@ class Player(CircleShape):
         if self.lives > 0:
             self.lives -= 1
             #set respawn point to middle of the screen
-            self.position.x = SCREEN_WIDTH / 2
-            self.position.y = SCREEN_HEIGHT / 2
+            self.position.x = random.randint(0, SCREEN_WIDTH)
+            self.position.y = random.randint(0, SCREEN_HEIGHT)
         else:
             print("Game over!")
             print(f"Player score: {self.score}")
