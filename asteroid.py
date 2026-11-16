@@ -22,14 +22,9 @@ class Asteroid(CircleShape):
     def update(self, dt):
         self.position += (self.velocity * dt)
 
-    def split(self, player):
+    def split(self):
         self.kill()
-        if self.radius == ASTEROID_MAX_RADIUS:
-            player.score += 20
-        if self.radius > ASTEROID_MIN_RADIUS and self.radius < ASTEROID_MAX_RADIUS:
-            player.score += 50
         if self.radius <= ASTEROID_MIN_RADIUS:
-            player.score += 100
             log_event("asteroid_destroyed")
             return
         else:
@@ -42,4 +37,3 @@ class Asteroid(CircleShape):
             asteroid2 = Asteroid(self.position.x, self.position.y, radius)
             asteroid1.velocity = angle1 * 1.2
             asteroid2.velocity = angle2 * 1.2
-            return

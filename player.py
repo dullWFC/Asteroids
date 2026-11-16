@@ -1,6 +1,6 @@
 import sys
 import pygame
-import asteroid
+
 from constants import *
 from circleshape import CircleShape
 from shot import Shot
@@ -74,3 +74,12 @@ class Player(CircleShape):
             print("Game over!")
             print(f"Player score: {self.score}")
             sys.exit()
+
+
+    def add_score(self, other):
+        if other.radius == ASTEROID_MAX_RADIUS:
+            self.score += 20
+        elif other.radius <= ASTEROID_MIN_RADIUS:
+            self.score += 100
+        else:
+            self.score += 50
