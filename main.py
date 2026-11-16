@@ -34,6 +34,8 @@ def main():
         score = font.render(f"{player.score}", True, "white")
         screen.blit(score, (0, 0))
         updatable.update(dt)
+        for object in drawable:
+            object.warp()
         for asteroid in asteroids:
             if asteroid.collides_with(player):
                 log_event("player_hit")

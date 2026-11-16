@@ -1,5 +1,7 @@
 import pygame
 
+from constants import *
+
 
 # Base class for game objects
 class CircleShape(pygame.sprite.Sprite):
@@ -28,3 +30,14 @@ class CircleShape(pygame.sprite.Sprite):
         radius = self.radius + other.radius
         distance = self.position.distance_to(other.position)
         return distance <= radius
+
+    def warp(self):
+        if self.position.x > SCREEN_WIDTH + 80:
+            self.position.x = 0
+        elif self.position.x < -80:
+            self.position.x = SCREEN_WIDTH
+
+        if self.position.y > SCREEN_HEIGHT + 80:
+            self.position.y = 0
+        elif self.position.y < -80:
+            self.position.y = SCREEN_HEIGHT
